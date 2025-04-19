@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/styleReset.css" />
+  <link rel="stylesheet" href="./css/styleDeafaul.css" />
+  <link rel="stylesheet" href="./css/form.css" />
+  <title>Form</title>
+</head>
+
+<body>
+  <form action method="post" autocomplete="off">
+
+    <h1>Register</h1>
+
+    <div class="container">
+      <div class="mb-3">
+        <label class="pick-avatar">
+          <input type="file" name="avatar" id="avatar" accept="image/*" hidden />
+          <img width="150px" src="https://static.vecteezy.com/system/resources/previews/039/845/048/non_2x/male-default-placeholder-avatar-profile-gray-picture-isolated-on-white-background-person-placeholder-image-man-silhouette-picture-for-your-design-illustration-free-vector.jpg" alt="">
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>Display name :
+          <input type="text" name="name" id="name" class="input-form" placeholder="Nguyễn Quốc Tình" required />
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>Email :
+          <input spellcheck="false" type="email" name="email" id="email" class="input-form" placeholder="nguyentinh140321@gmail.com" required />
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>Phone Number :
+          <input spellcheck="false" type="tel" name="tel" id="tel" class="input-form" placeholder="0862201004" required />
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>Password :
+          <input type="password" name="password" id="password" class="input-form" required />
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>Confirm Password :
+          <input type="password" name="passwordConfirm" id="passwordConfirm" class="input-form" required />
+        </label>
+      </div>
+      <div class="mb-3 d-flex w-75">
+        <label> Gender :
+        </label>
+        <label>Nam
+          <input type="radio" name="gender" />
+        </label>
+        <label>Nữ
+          <input type="radio" name="gender" />
+        </label>
+        <label>Khác
+          <input type="radio" name="gender" />
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>
+          Date of Birth :
+          <input type="date" name="dob" class="input-form" required />
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>
+          Address :
+          <input type="text" name="address" id="address" class="input-form" placeholder="Hà Nội" required />
+        </label>
+      </div>
+      <div class="mb-3 pick-type-email">
+        <label>
+          Communication Preferences :
+        </label>
+        <label>
+          <input type="checkbox" name="typeEmail" />
+          Subscribe to Newsletter
+        </label>
+        <label>
+          <input type="checkbox" name="typeEmail" />
+          Subscribe to Newsletter
+        </label>
+        <label>
+          <input type="checkbox" name="typeEmail" />
+          Subscribe to Newsletter
+        </label>
+      </div>
+<input type="submit" value="Register" class="btn-submit" />
+
+    </div>
+  </form>
+</body>
+
+</html>

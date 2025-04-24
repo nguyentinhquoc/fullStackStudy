@@ -31,14 +31,17 @@ form h1 {
   border: 2px solid #4caf50;
   outline: none;
 }
+
 .container:has(.input-form:focus) {
   box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
   padding: 10px;
 }
+
 .input-form:invalid:focus {
   border: 2px solid red;
   outline: none;
 }
+
 label:has(.input-form[required])::before {
   content: '* ';
   color: red;
@@ -75,7 +78,7 @@ label {
   opacity: 1;
 }
 
-.pick-type-email > label {
+.pick-type-email>label {
   display: block;
   margin: 10px;
 }
@@ -89,6 +92,7 @@ label {
   cursor: pointer;
   width: 100%;
 }
+
 /* <+====================Menu====================+> */
 nav a {
   text-decoration: none;
@@ -107,22 +111,25 @@ nav ul {
 nav ul li:last-child {
   border-right: 0px;
 }
+
 nav ul li {
   display: inline-block;
   padding: 34px 32px;
   border-right: 1px solid #ccc;
 }
 
-nav li:hover > a {
+nav li:hover>a {
   color: black;
 }
 
 nav li:hover {
   background-color: white;
 }
+
 nav li:active {
   background-color: #ccc;
 }
+
 /* <+====================price-box====================+> */
 .pricing-table {
   height: 100vh;
@@ -132,16 +139,19 @@ nav li:active {
   align-items: center;
   flex-wrap: wrap;
 }
+
 .pricing-table .price-box:nth-child(2n) {
- font-size: 24px;
+  font-size: 24px;
   height: 600px;
 }
+
 .price-box {
   height: 500px;
   width: 30%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 5%;
 }
+
 .price-box .category {
   font-size: 3rem;
   font-weight: bolder;
@@ -149,17 +159,27 @@ nav li:active {
   padding: 40px 0px;
   border-bottom: 1px solid #ccc;
 }
+
 .price-box .price {
   color: #3e5cca;
   font-size: 5rem;
   font-weight: bolder;
   text-align: center;
   margin: 20px 0px;
-}.price-box ul li{
-  margin-top: 2rem;
+}
 
-}.price-box ul{
-  list-style: circle;
- padding: 0px 70px;
- font-weight: 600;
+.price-box ul li {
+  margin-top: 2rem;
+}
+
+.price-box ul li::before {
+  content: '✓';
+  color: #3e5cca;
+  margin-right: 10px;
+}
+
+.price-box ul {
+  list-style: none;
+  padding: 0px 70px;
+  font-weight: 600;
 }

@@ -79,34 +79,9 @@ span {
   padding: 20px 25px 20px;
   font-family: var(--font-heading);
 }
-.menu li:hover > .submenu{
-  display: block;
-}
 
-.menu .menu-item{
-position: relative;
-}
-.menu .submenu{
-  position: absolute;
-  top: 30px;
-  display: none;
-}
-.menu .submenu a {
-  background-color: white;
-  border-bottom: 1px solid #e5dfdf;
-  color: #666161;
-  display: block;
-  min-width: 250px;
-}
-.submenu a:hover {
-  background-color: var(--primary);
-  color: white;
-}
 .menu li>a {
   text-transform: uppercase;
-}
-.submenu .submenu{
-  left: 250px;
 }
 
 .icon-action .icon-item {
@@ -358,42 +333,35 @@ footer .inner {
   gap: 15px;
   color: #6d6c6c;
 }
-
-footer a {
+footer a{
   text-decoration: none;
   color: #6d6c6c;
 }
 
 .footer-infor, .footer-subscribe {
-  width: 25%;
+width: 25%;
 }
-
-.footer-infor ul {
+.footer-infor ul{
   display: flex;
-  gap: 20px;
+gap: 20px;
 }
-
 .footer-list {
   width: 16.66666667%;
 }
 
-.footer-list a {
+.footer-list a{
   line-height: 30px;
 }
-
-footer h6 {
+footer h6{
   font-size: 2rem;
   color: white;
 }
-
-.footer-logo,
-.footer-subscribe, .footer-list {
+.footer-logo ,
+.footer-subscribe,.footer-list{
   display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.footer-subscribe input {
+    flex-direction: column;
+    gap: 25px;
+}.footer-subscribe input{
   width: 100%;
   padding: 10px 20px;
   background-color: #272727;
@@ -401,9 +369,7 @@ footer h6 {
   border: none;
   border-radius: 20px;
   font-family: var(--font-text);
-}
-
-.footer-subscribe button {
+}.footer-subscribe button{
   color: #fff;
   line-height: 40px;
   background-color: var(--primary);
@@ -413,7 +379,7 @@ footer h6 {
   margin-top: 10px;
   border-radius: 20px;
   font-family: var(--font-text);
-  text-transform: uppercase;
+  text-transform:uppercase;
   letter-spacing: 1.5px;
   font-size: 1.5rem;
 }

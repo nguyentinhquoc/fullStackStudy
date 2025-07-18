@@ -1,0 +1,46 @@
+* {
+  font-family: 'PT san';
+  font-weight: 700;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+ul {
+    background-color: #272a31;
+}
+.section-list {
+  width: 80%;
+}
+.section-header {
+  position: sticky;
+  top: 0;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  line-height: 80px;
+    background-color: #272a31;
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.section {
+  position: relative;
+}
+.lesson{
+  font-size: 1.2rem;
+  font-weight: 300;
+}.lesson a{
+  color: #ccc;
+  padding: 10px 80px;
+  display: inline-block;
+  line-height: 60px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+

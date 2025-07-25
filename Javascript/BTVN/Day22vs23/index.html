@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon"></div>
+          <span class="logo-text">F8 Todo</span>
+        </div>
+
+        <h1 class="header-title">Todo List</h1>
+
+        <div class="header-actions">
+          <button class="notification-btn">
+            <i class="fa-solid fa-bell fa-icon"></i>
+          </button>
+          <div class="profile-avatar">
+            <i class="fa-solid fa-user fa-icon"></i>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Controls Section -->
+      <div class="controls">
+        <div class="search-container">
+          <i class="fa-solid fa-magnifying-glass fa-icon search-icon"></i>
+          <input type="text" class="search-input" placeholder="Search List" />
+        </div>
+
+        <button class="add-btn">
+          <i class="fa-solid fa-plus fa-icon"></i>
+          Add New Task
+        </button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <div class="tab-list">
+          <button class="tab-button action active">Active Task</button>
+          <button class="tab-button completed">Completed</button>
+        </div>
+      </div>
+
+      <!-- Task Grid -->
+      <div class="task-grid">
+        <!-- Team Meeting Card -->
+      </div>
+    </main>
+
+    <!-- Add New Task Modal -->
+    <div class="modal-overlay" id="addTaskModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h2 class="modal-title">Add New Task</h2>
+          <button class="modal-close">
+            <i class="fa-solid fa-xmark fa-icon"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="todo-app-form">
+            <div class="form-group">
+              <label class="form-label" for="taskTitle">Task Title *</label>
+              <input
+                type="text"
+                id="taskTitle"
+                class="form-input"
+                placeholder="Enter task title"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="taskDescription"
+                >Description</label
+              >
+              <textarea
+                id="taskDescription"
+                class="form-textarea"
+                placeholder="Enter task description"
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="taskCategory">Category</label>
+              <select id="taskCategory" class="form-select">
+                <option value="">Select category</option>
+                <option value="meeting">Meeting</option>
+                <option value="design">Design</option>
+                <option value="development">Development</option>
+                <option value="planning">Planning</option>
+                <option value="client">Client Work</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="taskPriority">Priority</label>
+              <select id="taskPriority" class="form-select">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+                <option value="urgent">Urgent</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Time Schedule</label>
+              <div class="time-inputs">
+                <div>
+                  <label class="form-label" for="startTime">Start Time</label>
+                  <input type="time" id="startTime" class="form-input" />
+                </div>
+                <div>
+                  <label class="form-label" for="endTime">End Time</label>
+                  <input type="time" id="endTime" class="form-input" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="taskDate">Due Date</label>
+              <input type="date" id="taskDate" class="form-input" />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="taskColor">Card Color</label>
+              <select id="taskColor" class="form-select">
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="yellow">Yellow</option>
+                <option value="pink">Pink</option>
+                <option value="green">Green</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create Task</button>
+        </div>
+      </div>
+    </div>
+    <script src="./main.js"></script>
+    <script></script>
+  </body>
+</html>

@@ -10,6 +10,11 @@ const btnAddTask = $("#addTaskModal .btn-primary");
 const inputSearch = $('input[class="search-input"]')
 inputSearch.addEventListener('input', (e) => {
   const inputValue = e.target.value.toUpperCase()
+  if (inputValue){
+    renderData(true)
+  }else{
+    renderData(false)
+  }
   $$('.task-card').forEach(element => {
     const textElement = element.querySelector('.task-title').innerText.toUpperCase()
     if (!textElement.includes(inputValue)) element.hidden = true
@@ -70,7 +75,13 @@ function addTask() {
   };
   todoTasks.unshift(newTask);
   localStorage.setItem("listTasks", JSON.stringify(todoTasks));
-  renderData();
+  toast({
+    title: 'Thành công!',
+    message: 'Thêm task thành công.',
+    type: 'success',
+    duration: 2000
+  })
+  renderData(false);
   toggleModal();
 }
 function editTask() {
@@ -89,15 +100,27 @@ function editTask() {
   const index = addTaskModal.dataset.index;
   todoTasks[index] = { ...todoTasks[index], ...newTask };
   localStorage.setItem("listTasks", JSON.stringify(todoTasks));
-  renderData();
+  toast({
+    title: 'Thành công!',
+    message: 'Sửa task thành công.',
+    type: 'success',
+    duration: 2000
+  })
+  renderData(false);
   toggleModal();
 }
 function deleteTask(index) {
   todoTasks.splice(index, 1);
   localStorage.setItem("listTasks", JSON.stringify(todoTasks));
-  renderData();
+  toast({
+    title: 'Thành công!',
+    message: 'Xóa task thành công.',
+    type: 'success',
+    duration: 2000
+  })
+  renderData(false);
 }
-renderData();
+renderData(false);
 // Trống XXS
 function blockXss(stringHtml) {
   let element = document.createElement("div");
@@ -108,7 +131,7 @@ function blockXss(stringHtml) {
 function updateData(index, obj) {
   todoTasks[index] = { ...todoTasks[index], ...obj };
   localStorage.setItem("listTasks", JSON.stringify(todoTasks));
-  renderData();
+  renderData(false);
 }
 
 // render dữ liệu ra màn hì
@@ -119,7 +142,7 @@ btnTad.forEach((element) => {
     if (e.target.classList.contains("active")) return;
     $(".tab-button.active").classList.remove("active");
     e.target.classList.add("active");
-    renderData()
+    renderData(false)
     // if (e.target.classList.contains("action")) {
     //   $$('.task-card').forEach((element) => {
     //     if (element.classList.contains('completed')) {
@@ -141,7 +164,7 @@ btnTad.forEach((element) => {
     // }
   });
 });
-function renderData() {
+function renderData(renderALl) {
   let stringHtmlRender = "";
   todoTasks.forEach((element, index) => {
     let isCompleted = false
@@ -151,7 +174,7 @@ function renderData() {
     if ($('.tab-button.completed').classList.contains('active')) {
       isCompleted = true
     }
-    if (isCompleted === element.completed) {
+    if (isCompleted === element.completed || renderALl) {
       stringHtmlRender += `
     <div class="task-card ${blockXss(element.cardColor)} ${element.completed ? "completed" : ""
         }"  data-index="${index}" >
@@ -187,16 +210,24 @@ function renderData() {
 }
 // click nút complete
 $(".task-grid").addEventListener("click", (e) => {
-  const index = e.target.closest(".task-card");
   if (e.target.closest(".complete")) {
+    const index = e.target.closest(".task-card").dataset.index;
     e.stopPropagation();
     updateData(index, { completed: true });
+    toast({
+      title: 'Thành công!',
+      message: 'Xác nhận task thành công.',
+      type: 'success',
+      duration: 2000
+    })
   } else if (e.target.closest(".edit.dropdown-item")) {
+    const index = e.target.closest(".task-card").dataset.index;
     // Mở model setData
     toggleModal();
     addTaskModal.querySelector(".modal-title").innerText = "Edit Task";
     btnAddTask.innerText = "Edit Task";
     addTaskModal.dataset.index = index;
+    console.log(todoTasks, index);
     $("#taskTitle").value = todoTasks[index].title;
     $("#taskDescription").value = todoTasks[index].description;
     $("#taskCategory").value = todoTasks[index].category;
@@ -206,6 +237,7 @@ $(".task-grid").addEventListener("click", (e) => {
     $("#taskDate").value = todoTasks[index].DueDate;
     $("#taskColor").value = todoTasks[index].cardColor;
   } else if (e.target.closest(".delete.dropdown-item")) {
+    const index = e.target.closest(".task-card").dataset.index;
     if (confirm("Bạn có chắc muốn xóa task này ?")) deleteTask(index);
   }
 });

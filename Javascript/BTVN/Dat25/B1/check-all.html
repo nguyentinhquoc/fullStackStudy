@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<style>
+  ul {
+    box-shadow: 3px 0px 32px 3px rgba(0, 0, 0, 1);
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+
+  li {
+    list-style: none;
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+</style>
+
+<body>
+  <ul>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-all" />
+        <label for="_checkbox-all" class="label-all">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-1" />
+        <label for="_checkbox-1">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-2" />
+        <label for="_checkbox-2">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-3" />
+        <label for="_checkbox-3">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-4" />
+        <label for="_checkbox-4">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-5" />
+        <label for="_checkbox-5">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-6" />
+        <label for="_checkbox-6">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-7" />
+        <label for="_checkbox-7">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-8" />
+        <label for="_checkbox-8">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-9" />
+        <label for="_checkbox-9">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <li>
+      <div class="checkbox-wrapper-26">
+        <input type="checkbox" id="_checkbox-10" />
+        <label for="_checkbox-10">
+          <div class="tick_mark"></div>
+        </label>
+      </div>
+    </li>
+    <input type="checkbox" id="test" />
+  </ul>
+  <script>
+    const checkBoxAll = document.querySelector("#_checkbox-all");
+    let checkbox = [];
+    for (let index = 0; index < 10; index++) {
+      checkbox.push(document.querySelector(`#_checkbox-${index + 1}`));
+    }
+    checkBoxAll.addEventListener("click", (e) => {
+      if (e.target.checked) {
+        for (let index = 0; index < 10; index++) {
+          checkbox[index].checked = true;
+        }
+      } else {
+        for (let index = 0; index < 10; index++) {
+          checkbox[index].checked = false;
+        }
+      }
+    });
+    checkbox.forEach((element) => {
+      element.addEventListener("click", () => {
+        let checkAll = true;
+        const label = document.querySelector('.label-all')
+        checkbox.forEach((element) => {
+          if (element.checked === false) {
+            checkAll = false
+            console.log(1);
+            return label.classList.add('aqua')
+          }
+          if (!checkAll) {
+            return label.classList.remove('aqua')
+            console.log(2);
+          }
+        })
+      });
+    });
+  </script>
+</body>
+
+</html>

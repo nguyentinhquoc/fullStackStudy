@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link rel="stylesheet" href="./asset/css/style.css" />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="music-player">
+      <!-- CD Disk -->
+      <div class="player-left">
+        <div class="cd">
+          <img
+            class="cd-thumb"
+            src="https://wallpapers.com/images/hd/hatsune-miku-music-anime-character-ryx2hvpq5fxp23qt.jpg"
+            alt="Album cover"
+          />
+          <div class="cd-shadow"></div>
+          <div class="cd-needle"></div>
+        </div>
+        <div class="current-info">
+          <div class="current-song-title">Chạy ngay đi</div>
+          <div class="current-song-singer">Bình gold</div>
+          <div class="controls">
+            <button class="btn btn-prev">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button class="btn btn-toggle-play">
+              <i class="fa-solid fa-play play-icon"></i>
+            </button>
+            <button class="btn btn-next">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+            <button class="btn btn-loop">
+              <i class="fa-solid fa-repeat"></i>
+            </button>
+            <button class="btn btn-shuffle">
+              <i class="fa-solid fa-shuffle"></i>
+            </button>
+          </div>
+          <input
+            type="range"
+            class="progress-bar"
+            value="0"
+            min="0"
+            max="100"
+            step="0.1"
+          />
+        </div>
+        <audio class="audio-player" controls></audio>
+      </div>
+      <!-- Playlist -->
+      <div class="player-right">
+        <h3 class="playlist-title">Playlist</h3>
+        <div class="playlist">
+
+        </div>
+      </div>
+    </div>
+    <script src="./asset/js/main.js"></script>
+  </body>
+</html>

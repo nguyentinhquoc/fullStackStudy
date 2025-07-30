@@ -1,0 +1,270 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #141820;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.music-player {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 850px;
+  margin: 50px auto;
+  background: #222534;
+  border-radius: 24px;
+  box-shadow: 0 10px 40px #0006;
+  overflow: hidden;
+}
+
+.player-left {
+  width: 350px;
+  min-width: 300px;
+  background: #181b29;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 24px;
+  position: relative;
+}
+
+.cd {
+  width: 180px;
+  height: 180px;
+  margin-bottom: 18px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cd-thumb {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  box-shadow: 0 0 24px #222b;
+  object-fit: cover;
+  background: #444;
+  transition: box-shadow .2s;
+  animation: rotate-cd 10s linear infinite paused;
+}
+
+.cd-thumb.is-playing {
+  animation-play-state: running;
+  box-shadow: 0 0 32px #97c6ffcc;
+}
+
+.cd-shadow {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, #fff3 0 40%, transparent 65%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.cd-needle {
+  position: absolute;
+  top: -38px;
+  left: 80px;
+  width: 28px;
+  height: 64px;
+  background: linear-gradient(120deg, #888 80%, transparent 80%);
+  border-radius: 16px;
+  z-index: 2;
+  transform: rotate(-24deg);
+  opacity: 0.25;
+}
+
+@keyframes rotate-cd {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.current-info {
+  text-align: center;
+  width: 100%;
+}
+
+.current-song-singer {
+color: #ead116;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  min-height: 28px;
+  margin-bottom: 12px;
+}
+.current-song-title {
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  min-height: 28px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.btn {
+  background: #343852;
+  border: none;
+  color: #b3cfff;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2em;
+  cursor: pointer;
+  outline: none;
+  transition: background .2s, color .2s;
+}
+
+.btn:active,
+.btn.active {
+  background: #4571eb;
+  color: #fff;
+}
+
+.btn-loop.active,
+.btn-shuffle.active {
+  background: #23d160;
+  color: #fff;
+}
+
+.progress-bar {
+  width: 88%;
+  margin: 0 auto;
+  height: 5px;
+  background: #474b66;
+  border-radius: 4px;
+  accent-color: #4571eb;
+  outline: none;
+  margin-bottom: 8px;
+}
+
+.player-right {
+  flex: 1 1 300px;
+  background: #23263d;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.playlist-title {
+  color: #e4e8f4;
+  margin: 0 0 16px 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.song {
+  background: #23263d;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding: 9px 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 1px solid transparent;
+}
+
+.song.active,
+.song:hover {
+  background: #4571eb18;
+  border: 1px solid #4571eb;
+}
+
+.song .thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin-right: 18px;
+  box-shadow: 0 4px 12px #0002;
+  overflow: hidden;
+}
+.song .thumb img{
+object-fit: cover;
+width: 48px;
+height: 48px;
+}
+
+.song .body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.song .title {
+  color: #e6eaff;
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+.song .author {
+  color: #b0b5cf;
+  font-size: 0.93em;
+  margin: 0;
+}
+
+.song .option {
+  color: #b0b5cfbb;
+  font-size: 1em;
+  margin-left: 10px;
+}
+
+@media (max-width: 700px) {
+  .music-player {
+    flex-direction: column;
+    max-width: 95vw;
+    border-radius: 14px;
+  }
+
+  .player-left,
+  .player-right {
+    width: 100%;
+    min-width: 0;
+    padding: 22px 4vw 18px;
+  }
+
+  .cd {
+    margin-bottom: 12px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .cd-thumb,
+  .cd-shadow {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  background: #23263d;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  background: transparent;
+}

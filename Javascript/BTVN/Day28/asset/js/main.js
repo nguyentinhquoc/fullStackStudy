@@ -22,9 +22,10 @@ function PlayList(audioLists = [], indexCurrent) {
       return;
     }
     this._progressBar.oninput = (e) => {
-      this._audioPlayer.currentTime = this._audioPlayer.duration*(e.target.value / 100);
+      this._audioPlayer.currentTime =
+        this._audioPlayer.duration * (e.target.value / 100);
       setTimeout(() => {
-        this._changStatusAudio(true)
+        this._changStatusAudio(true);
       }, 100);
     };
     const stringInnerList = this.audioLists
@@ -103,6 +104,13 @@ function PlayList(audioLists = [], indexCurrent) {
       `;
       })
       .join("");
+ setTimeout(() => {
+   this._playList.querySelectorAll(".song").forEach((element) => {
+     element.onclick = () => {
+       this._renderCurrent(element.dataset.id, true);
+     };
+   });
+ }, 100);
     this._playList.innerHTML = stringInnerList;
   };
   this._changeLoop = (event) => {

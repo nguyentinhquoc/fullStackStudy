@@ -1,2 +1,1 @@
-const abc = "string"
-c
+import  "./wave.js";

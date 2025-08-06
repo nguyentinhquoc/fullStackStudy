@@ -10,9 +10,9 @@ const btnAddTask = $("#addTaskModal .btn-primary");
 const inputSearch = $('input[class="search-input"]')
 inputSearch.addEventListener('input', (e) => {
   const inputValue = e.target.value.toUpperCase()
-  if (inputValue){
+  if (inputValue) {
     renderData(true)
-  }else{
+  } else {
     renderData(false)
   }
   $$('.task-card').forEach(element => {

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin thời tiết</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #eef2f3;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .weather-container {
+            background-color: #fff;
+            padding: 30px 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .weather-container h2 {
+            text-align: center;
+            color: #2d3436;
+            margin-bottom: 20px;
+        }
+
+        .select-city {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        .weather-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .weather-info .icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .weather-info .city {
+            font-weight: bold;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: #0984e3;
+        }
+
+        .weather-info .detail {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .refresh-btn {
+            display: block;
+            margin: 0 auto;
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .refresh-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function Weather() {
+            function refreshWeathers() {
+                const random = Math.floor(Math.random() * 5) + 1;
+                const newWea = Object.entries(weathers).map(([key, weather]) => { if (random % 2 === 0) { return [key, { ...weather, temp: weather.temp + random }] } else { return [key, { ...weather, temp: weather.temp - random }] } })
+                return Object.fromEntries(newWea)
+            }
+
+            const [weathers, setWeather] = React.useState({
+                "hanoi": { city: "Hà Nội", temp: 28, weather: "Nắng", humidity: 65 },
+                "hcm": { city: "TP.HCM", temp: 32, weather: "Có mây", humidity: 78 },
+                "danang": { city: "Đà Nẵng", temp: 30, weather: "Mưa nhẹ", humidity: 82 }
+            })
+            const [isCity, setCity] = React.useState("hanoi")
+            return <>
+                <div className="weather-container">
+                    <h2>Thời tiết hôm nay</h2>
+
+                    <select className="select-city" onChange={(e) => { setCity(e.target.value) }}>
+                        {Object.entries(weathers).map(([key, weather]) => {
+                            return <option value={key} key={key}>{weather.city}</option>
+                        })}
+                    </select>
+
+                    <div className="weather-info">
+                        <div className="icon">{weathers[isCity].weather === "Nắng" ? '☀️' : weathers[isCity].weather === "Có mây" ? '🌤️' : '🌧️'} </div>
+                        <div className="city">{weathers[isCity].city}</div>
+                        <div className="detail">
+                            Nhiệt độ: {weathers[isCity].temp}°C<br />
+                            Trạng thái: {weathers[isCity].weather}<br />
+                            Độ ẩm: {weathers[isCity].humidity}%
+                        </div>
+                    </div>
+                    <button className="refresh-btn" onClick={() => { setWeather(refreshWeathers()) }}>🔄 Làm mới</button>
+                </div>
+            </>
+        }
+
+        const app = (<><Weather /></>)
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(app)
+
+    </script>
+
+
+
+
+</body>
+
+</html>

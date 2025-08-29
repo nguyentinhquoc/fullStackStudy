@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .counter-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .counter-number {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .increment {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .decrement {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .reset {
+            background-color: #2196F3;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+
+        function Counter({ children, className }) {
+            const [value, setValue] = React.useState(0)
+            return (<>
+                <div className="counter-container">
+                    <div className="counter-number" style={{ color: value > 0 ? 'green' : value < 0 ? 'red' : 'gray' }} id="counter">{value}</div>
+                    <p>{value > 0 ? 'So lon hon 0' : value < 0 ? ' So nho hon 0' : 'So Banng 0'}</p>
+                    <div className="buttons">
+                        <button className="decrement" onClick={() => setValue(value - 1)}>-</button>
+                        <button className="reset" onClick={() => setValue(0)}>Reset</button>
+                        <button className="increment" onClick={() => setValue(value + 1)}>+</button>
+                    </div>
+                </div>
+            </>)
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(<Counter />)
+
+    </script>
+</body>
+
+</html>

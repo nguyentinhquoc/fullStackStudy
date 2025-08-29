@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách bài tập</title>
+    <style>
+        .menu {
+            background-color: antiquewhite;
+            height: 100vh;
+            width: 500px;
+            margin: 0 auto;
+            overflow: auto;
+            color: #fff;
+        }
+
+        .item {
+            background-color: rgb(37, 43, 46);
+            width: 100%;
+        }
+
+        .item>p {
+            line-height: 2;
+            margin: 0;
+            padding: 10px 20px;
+        }
+
+        .item>p:hover {
+            opacity: 0.7;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul>li:hover {
+            opacity: 0.7;
+            background-color: rgb(78, 89, 95);
+
+        }
+
+        ul>li>a {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            list-style: none;
+            padding: 10px 50px;
+            text-decoration: none;
+            color: #fff;
+            background-color: rgb(112, 103, 103);
+        }
+
+        ul>li {
+            border-bottom: 1px solid #ccc;
+        }
+
+        body {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <div class="item">
+            <p>Day 34</p>
+            <ul>
+                <li><a href="./counter.html">Bài 1: counter</a></li>
+                <li><a href="./todo.html">Bài 2: Todo List</a></li>
+                <li><a href="./profile.html">Bài 3: Profile</a></li>
+                <li><a href="./products.html">Bài 4: Product List</a></li>
+                <li><a href="./comments.html">Bài 5: Comment System</a></li>
+                <li><a href="./weather.html">Bài 6: Weather App</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

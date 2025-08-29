@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .comment-section {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .comment-section h3 {
+            margin-bottom: 20px;
+            color: #2d3436;
+            font-size: 1.4rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .comment-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .comment-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .avatar img {
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            background-color: #dfe6e9;
+            color: #2d3436;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            padding: 0;
+            color: #0984e3;
+            margin: 0;
+        }
+
+        .comment-time {
+            font-size: 0.85rem;
+            color: #636e72;
+        }
+
+        .comment-text {
+            display: block;
+            margin: 0;
+            color: #2d3436;
+            line-height: 1.4;
+        }
+
+        .loader {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: inline-block;
+            border-top: 4px solid #2ecc71;
+            border-right: 4px solid transparent;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+            position: relative;
+        }
+
+        .loader::after {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border-left: 4px solid #27ae60;
+            border-bottom: 4px solid transparent;
+            animation: rotation 0.5s linear infinite reverse;
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .comment-email{
+            opacity: 0.5;
+        }
+    </style>
+    <title>Comments</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function Comment() {
+            const [comments, setComments] = React.useState([])
+
+            React.useEffect(() => {
+
+                    (async () => {
+                        const Res = await fetch('https://jsonplaceholder.typicode.com/comments?postId=1')
+                        const dataComment = await Res.json()
+                        setComments(dataComment)
+                    })()
+
+            }, [])
+
+
+            return <>
+                {comments.length <= 0
+                    ?
+                    <div className="loading">
+                        <span className="loader"></span>
+                    </div>
+                    :
+                    <div className="comment-section">
+                        <h3>Comments</h3>
+                        <div className="comment-list">
+                            {comments.map(coment => {
+                                return <div className="comment-item">
+                                    <div className="avatar"><img src={`https://ui-avatars.com/api/?name=${coment.name}&background=random`} alt="avatar"/></div>
+                                    <div className="comment-content">
+                                        <div className="comment-header">
+                                            <div>
+                                                <p className="comment-author">{coment.name}</p>
+                                                <span className="comment-email">{coment.email}</span>
+                                                </div>
+                                            <span className="comment-time">2 hours ago</span>
+                                        </div>
+                                        <p className="comment-text">{coment.body}</p>
+                                        
+                                    </div>
+                                </div>
+                            })
+                            }
+                        </div>
+                    </div>
+                }
+            </>
+        }
+
+        const app = (<><Comment /></>)
+
+        const root = ReactDOM.createRoot(document.getElementById('root'))
+        root.render(app)
+
+    </script>
+
+
+
+
+</body>
+
+</html>

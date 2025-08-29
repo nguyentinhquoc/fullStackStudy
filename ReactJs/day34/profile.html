@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <style>
+        /* // */
+        .loader {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: inline-block;
+            border-top: 4px solid #FFF;
+            border-right: 4px solid transparent;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+        }
+
+        .loader::after {
+            content: '';
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border-left: 4px solid #FF3D00;
+            border-bottom: 4px solid transparent;
+            animation: rotation 0.5s linear infinite reverse;
+        }
+
+        @keyframes rotation {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            background-color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* // Loainfg */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .profile-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 350px;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile-header h2 {
+            color: #333;
+        }
+
+        .profile-info {
+            list-style: none;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .profile-info li {
+            margin-bottom: 10px;
+        }
+
+        .profile-info span {
+            font-weight: bold;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function ProfileCard() {
+            const [infor, setInfor] = React.useState(null)
+            React.useEffect(() => {
+                (async () => {
+                    try {
+                        const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
+                        const data = await res.json();
+                        setInfor(data)
+                    } catch (error) {
+                        console.error("Lỗi khi lấy dữ liệu:", error);
+                    }
+                })()
+            }, [])
+            console.log(123321123123)
+            return (<>
+                {!infor
+                    ?
+                    <div className="loading">
+                        <span className="loader"></span>
+                    </div>
+                    :
+                    <div className="profile-card">
+                        <div className="profile-header">
+                            <h2>{infor.name}</h2>
+                            <p>@{infor.username}</p>
+                        </div>
+                        <ul className="profile-info">
+                            <li><span>Email:</span>{infor.email}</li>
+                            <li><span>Phone:</span> {infor.phone}</li>
+                            <li><span>Website:</span> {infor.website}</li>
+                            <li><span>Address:</span> {infor.address?.street}</li>
+                        </ul>
+                    </div>
+                }
+            </>)
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<ProfileCard />);
+    </script>
+</body>
+</body>
+
+</html>

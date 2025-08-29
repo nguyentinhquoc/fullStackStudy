@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .todo-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px 0 0 6px;
+            outline: none;
+        }
+
+        .input-group button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            cursor: pointer;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .task label {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .task input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .task input[type="checkbox"]:checked+span {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        .task button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .stats {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        let uniqId = 0;
+        function TodoList() {
+            const [task, setTask] = React.useState([])
+            const [listTasks, setListTasks] = React.useState([])
+            console.log("🚀 ~ TodoList ~ listTasks:", listTasks)
+            return (<>
+                <div className="todo-container">
+                    <h2>Todo List</h2>
+                    {listTasks.length <= 0 && 'Chưa có task nào. Hãy thêm task đầu tiên!' }
+                    <div className="input-group">
+                        <input type="text" value={task} onInput={(e) => setTask(e.target.value)} placeholder="Nhập task mới..." />
+                        <button onClick={() => { setListTasks([{ id: ++uniqId, text: task, completed: false }, ...listTasks]); setTask('') }}>Thêm</button>
+                    </div>
+                        <ul className="task-list">
+                            {listTasks.map((taskItem) => {
+                                return <li className="task" key={taskItem.id}>
+                                    <label>
+                                        <input type="checkbox" onChange={(e) => {
+                                            setListTasks(listTasks.map(task => {
+                                                return task.id === taskItem.id ? { ...task, completed: e.target.checked } : { ...task }
+                                            }))
+                                        }} />
+                                        <span>{taskItem.text}</span>
+                                    </label>
+                                    <button onClick={() => { setListTasks(listTasks.filter(t => t.id != taskItem.id)) }}>Xóa</button>
+                                </li>
+                            })}
+                        </ul>
+                    <div className="stats">
+                        Tổng: {listTasks.length} task(s), Hoàn thành: {listTasks.filter(t => t.completed === true).length} task(s), Còn lại: {listTasks.filter(t => t.completed === false).length} task(s)
+                    </div>
+                </div>
+            </>)
+                ;
+        }
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TodoList />);
+    </script>
+
+
+
+</body>
+
+</html>
+<!-- -->
